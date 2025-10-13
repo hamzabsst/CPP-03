@@ -1,0 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbousset <hbousset@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/12 16:30:01 by hbousset          #+#    #+#             */
+/*   Updated: 2025/10/13 09:46:39 by hbousset         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ScavTrap.hpp"
+
+ScavTrap::ScavTrap(): ClapTrap()
+{
+	std::cout << "ScavTrap Default constructor called" << std::endl;
+}
+ScavTrap::ScavTrap(std::string name): ClapTrap(name)
+{
+	std::cout << "ScavTrap " << name << " constructor called" << std::endl;
+}
+ScavTrap::ScavTrap(const ScavTrap &other):ClapTrap(other)
+{
+	std::cout << "ScavTrap copy constructor called" << std::endl;
+	*this = other;
+}
+ScavTrap& ScavTrap::operator=(const ScavTrap &other)
+{
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		ClapTrap::operator=(other);
+	}
+	return *this;
+}
+ScavTrap::~ScavTrap()
+{
+	std::cout << "ScavTrap " << _name << " destructor called" << std::endl;
+}
+
+void ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
+	_guardingGate = true;
+}
+
+void ScavTrap::attack(const std::string& target)
+{
+	if (_hitPoints == 0)
+	{
+		std::cout << "ScavTrap " << _name << " cannot attack because it has no hit points left!" << std::endl;
+		return;
+	}
+	if (_energyPoints == 0)
+	{
+		std::cout << "ScavTrap " << _name << " cannot attack because it has no energy points left!" << std::endl;
+		return;
+	}
+
+	std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	_energyPoints--;
+}

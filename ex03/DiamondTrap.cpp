@@ -41,6 +41,7 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap &other)
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);
+		_name = other._name;
 	}
 	return *this;
 }
@@ -51,5 +52,5 @@ DiamondTrap::~DiamondTrap()
 
 void DiamondTrap::whoAmI()
 {
-	std::cout << "DiamondTrap name is " << _name << " and ClapTrap name is" << ClapTrap::_name <<std::endl;
+	std::cout << "DiamondTrap name is " << _name << " and ClapTrap name is " << ClapTrap::_name << std::endl;
 }
